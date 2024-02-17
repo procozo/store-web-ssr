@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-Open [https://shop-managment-3e081.web.app] with your browser to see the result or [http:localhost:3000] on your local.
+Open [https://shop-managment-3e081.web.app] with your browser to see the result or [http://localhost:3000] on your local.
 
 ## Learn More
 
