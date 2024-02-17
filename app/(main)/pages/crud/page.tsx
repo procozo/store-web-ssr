@@ -334,7 +334,7 @@ const Crud = () => {
                         className="datatable-responsive"
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
-                        globalFilterFields={['store_id', 'product_name', 'proce', 'date', 'sku']}
+                        globalFilterFields={['store_id', 'product_name', 'price', 'date', 'sku']}
                         emptyMessage="No products found."
                         header={header}
                     >
