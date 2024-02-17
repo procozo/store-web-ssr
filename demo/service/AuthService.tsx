@@ -1,3 +1,4 @@
+import { Constat } from '@/app/constant/Constant';
 import { Demo } from '@/types';
 
 export const AuthService = {
@@ -5,7 +6,7 @@ export const AuthService = {
         const loginData = data;
 
         try {
-            const response = await fetch('http://localhost/api/auth/login', {
+            const response = await fetch(Constat.env.URL + '/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

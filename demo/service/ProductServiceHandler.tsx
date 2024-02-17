@@ -1,10 +1,11 @@
+import { Constat } from '@/app/constant/Constant';
 import { Demo } from '@/types';
 
 export const ProductServiceHandler = {
     getProducts() {
         let token = sessionStorage.getItem('token');
         console.log(token);
-        return fetch('http://localhost:80/api/shop/getAllStoreItems', { headers: { 'auth-header': '' + token + '' } })
+        return fetch(Constat.env.URL + '/api/shop/getAllStoreItems', { headers: { 'auth-header': '' + token + '' } })
             .then((res) => res.json())
             .then((d) => d as any);
     },
@@ -21,7 +22,7 @@ export const ProductServiceHandler = {
             redirect: 'follow'
         };
 
-        return fetch('http://localhost:80/api/shop/upload', requestOptions)
+        return fetch(Constat.env.URL + '/api/shop/upload', requestOptions)
             .then((res) => res.json())
             .then((d) => d as any);
     },
@@ -36,7 +37,7 @@ export const ProductServiceHandler = {
             body: JSON.stringify(data)
         };
 
-        return fetch('http://localhost:80/api/shop/updateProduct', requestOptions)
+        return fetch(Constat.env.URL + '/api/shop/updateProduct', requestOptions)
             .then((res) => res.json())
             .then((d) => d as any);
     },
@@ -49,7 +50,7 @@ export const ProductServiceHandler = {
             body: JSON.stringify(data)
         };
 
-        return fetch('http://localhost:80/api/shop/deleteProduct', requestOptions)
+        return fetch(Constat.env.URL + '/shop/deleteProduct', requestOptions)
             .then((res) => res.json())
             .then((d) => d as any);
     }

@@ -208,11 +208,6 @@ const Crud = () => {
         });
     };
 
-    const onCategoryChange = (e: RadioButtonChangeEvent) => {
-        let _product = { ...product };
-        _product['category'] = e.value;
-        setProduct(_product);
-    };
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, product_name: string) => {
         const val = (e.target && e.target.value) || '';
@@ -236,7 +231,11 @@ const Crud = () => {
             <React.Fragment>
                 <div className="my-2">
                     <Button label="New" icon="pi pi-plus" severity="success" className=" mr-2" onClick={openNew} />
-                    <Button label="Delete" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedProducts || !(selectedProducts as any).length} />
+
+
+                    {/* onClick={confirmDeleteSelected} */}
+                    <Button label="Delete" icon="pi pi-trash" severity="danger" className='opacity-40' disabled={false} tooltip='You are not an admin to perform this please contant vinayakbappanadu@gmail.com' />
+                    <Button label="Export All the data" icon="pi pi-download" severity="success" className=" mr-2 ml-2" onClick={exportCSV} />
                 </div>
             </React.Fragment>
         );
@@ -251,74 +250,12 @@ const Crud = () => {
         );
     };
 
-    const codeBodyTemplate = (rowData: Demo.Product) => {
-        return (
-            <>
-                <span className="p-column-title">Code</span>
-                {rowData.code}
-            </>
-        );
-    };
-
-    const nameBodyTemplate = (rowData: Demo.Product) => {
-        return (
-            <>
-                <span className="p-column-title">Name</span>
-                {rowData.name}
-            </>
-        );
-    };
-
-    const imageBodyTemplate = (rowData: Demo.Product) => {
-        return (
-            <>
-                <span className="p-column-title">Image</span>
-                <img src={`/demo/images/product/${rowData.image}`} alt={rowData.image} className="shadow-2" width="100" />
-            </>
-        );
-    };
-
-    const priceBodyTemplate = (rowData: Demo.Product) => {
-        return (
-            <>
-                <span className="p-column-title">Price</span>
-                {formatCurrency(rowData.price as number)}
-            </>
-        );
-    };
-
-    const categoryBodyTemplate = (rowData: Demo.Product) => {
-        return (
-            <>
-                <span className="p-column-title">Category</span>
-                {rowData.category}
-            </>
-        );
-    };
-
-    const ratingBodyTemplate = (rowData: Demo.Product) => {
-        return (
-            <>
-                <span className="p-column-title">Reviews</span>
-                <Rating value={rowData.rating} readOnly cancel={false} />
-            </>
-        );
-    };
-
-    const statusBodyTemplate = (rowData: Demo.Product) => {
-        return (
-            <>
-                <span className="p-column-title">Status</span>
-                <span className={`product-badge status-${rowData.inventoryStatus?.toLowerCase()}`}>{rowData.inventoryStatus}</span>
-            </>
-        );
-    };
-
     const actionBodyTemplate = (rowData: Demo.Product) => {
         return (
             <>
                 <Button icon="pi pi-pencil" rounded severity="success" className="mr-2" onClick={() => editProduct(rowData)} />
-                <Button icon="pi pi-trash" rounded severity="warning" onClick={() => confirmDeleteProduct(rowData)} />
+                {/* onClick={() => confirmDeleteProduct(rowData)}  */}
+                <Button icon="pi pi-trash" rounded severity="warning" className='opacity-40' tooltip='You are not an admin to perform this contact admin to enable delete' />
             </>
         );
     };
@@ -332,17 +269,6 @@ const Crud = () => {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS }
     });
 
-    const setDataInput = (e: any) => {
-        console.log(e.target.value)
-        // setGlobalFilter(e.target.value)
-        const value = e.target.value;
-        let _filters = { ...filters };
-
-        _filters['global'].value = value;
-
-        setFilters(_filters);
-        setGlobalFilter(value);
-    }
 
     const [globalFilterValue, setGlobalFilterValue] = useState('');
 
